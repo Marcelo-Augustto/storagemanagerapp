@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>StorageManagerAPP</title>
+</head>
+<body>
+    <h1>Register Section:</h1>
+    <h3><a href="sections">Sections</a></h3>
+    <form method="post" th:object="${section}">
+        Name: <input type="text" value="" name="name">
+        Description: <input type="text" value="" name="description">
+        Tags: <input type="text" value="" name="tags">
+
+        <button type="submit">Add</button>
+    </form>
+    <th:block th:include="message"></th:block>
+</body>
+</html>

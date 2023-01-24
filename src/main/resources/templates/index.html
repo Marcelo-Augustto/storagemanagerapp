@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Storage Manager App</title>
+</head>
+<body>
+    <h1>Sections</h1>
+    <h3><a href="RegisterSection">Create a new section</a></h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Tags</th>
+            <th>Delete</th>
+        </tr>
+        <tr class="row" th:each="section : ${sections}">
+            <td><a th:href="${(#mvc.url('SC#sectionDetails').arg(0, section.id)).build()}"><span th:text="${section.name}"></span></a></td>
+            <td><span th:text="${section.description}"></span></td>
+            <td><span th:text="${section.tags}"></span></td>
+            <td><a th:href="${(#mvc.url('SC#deleteSection').arg(0, section.id)).build()}">X</a></td>
+        </tr>
+    </table>
+</body>
+</html>

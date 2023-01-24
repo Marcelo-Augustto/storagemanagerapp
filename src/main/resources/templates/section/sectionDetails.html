@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+  <title>Storage Manager App</title>
+</head>
+<body>
+  <h1>Section Info</h1>
+  <h3><a href="sections">Sections</a></h3>
+
+  <div th:each="section : ${section}">
+    <div>
+      <p><h2 th:text="${section.name}"></h2></p>
+      <p>Description: <span th:text="${section.description}"></span></p>
+      <p>Tags: <span th:text="${section.tags}"></span></p>
+    </div>
+  </div>
+
+  <h1>Register Product:</h1>
+  <form method="post" th:object="${product}">
+    Serial: <input type="text" value="" name="serial">
+    Name: <input type="text" value="" name="name">
+    Price: <input type="number" value="" name="price">
+    Quantity: <input type="number" value="" name="quantity">
+    Description: <input type="text" value="" name="description">
+
+    <button type="submit">Add</button>
+  </form>
+
+  <th:block th:include="message"></th:block>
+
+  <h1>Products</h1>
+  <table>
+    <tr>
+      <th>Serial</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Description</th>
+      <th>Delete</th>
+    </tr>
+    <tr class="row" th:each="product : ${products}">
+      <td><span th:text="${product.serial}"></span></td>
+      <td><span th:text="${product.name}"></span></td>
+      <td><span th:text="${product.price}"></span></td>
+      <td><span th:text="${product.quantity}"></span></td>
+      <td><span th:text="${product.description}"></span></td>
+      <td><a th:href="${(#mvc.url('SC#deleteProduct').arg(0, product.serial)).build()}">X</a></td>
+    </tr>
+  </table>
+</body>
+</html>
